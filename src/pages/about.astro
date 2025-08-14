@@ -1,18 +1,25 @@
 ---
+import '../styles/global.css';
+import selfie from '../assets/selfie.jpg';
+
 const pageTitle = "About Me";
 
 const identity = {
-  firstName: "Sarah",
-  country: "Canada",
-  occupation: "Technical Writer",
-  hobbies: ["photography", "birdwatching", "baseball"],
+  firstName: "Carlos",
+  country: "México",
+  occupation: "Developer",
+  hobbies: ["photography", "Electronics", "web development"],
 };
 
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Electronics", "robotics", "Arduino", "Raspberry Pi", "Python", "Rust", "C++", "C#", "Java", "SQL", "NoSQL", "Git", "Linux", "Windows", "macOS", "Docker", "Kubernetes"];
 
 const happy = true;
 const finished = false;
 const goal = 3;
+
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
 <html lang="en">
@@ -22,13 +29,40 @@ const goal = 3;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
+    <style define:vars={{skillColor, fontWeight, textCase}}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+      .skillContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .skill {
+        color: green;
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+      img {
+        display: block;
+        width: 300px;
+        height: auto;
+        border-radius: 5%;
+        margin: 0 auto;
+      }
+    </style>
 	</head>
 	<body>
         <a href="/">Home</a>
         <a href="/about/">About</a>
         <a href="/blog/">Blog</a>
 		<h1>{pageTitle}</h1>
-        <h2>... and my new Astro site!</h2>
+        <h2>Hi, my name is Carlos :)</h2>
+
+        <img src={selfie.src} alt="My hild and i">
 
         <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
 
@@ -43,14 +77,14 @@ const goal = 3;
         }
         </ul>
         <p>My skills are:</p>
-        <ul>
-        {skills.map((skill) => <li>{skill}</li>)}
+        <ul class="skillContainer">
+          {skills.map((skill) => <li class="skill">{skill}</li>)}
+        </ul>
 
         {happy && <p>I am happy to be learning Astro!</p>}
 
         {finished && <p>I finished this tutorial!</p>}
 
         {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
-        </ul>
 	</body>
 </html>
