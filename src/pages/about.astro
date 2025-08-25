@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import selfie from '../assets/selfie.jpg';
 
 const pageTitle = "About Me";
@@ -22,44 +22,7 @@ const fontWeight = "bold";
 const textCase = "uppercase";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-    <style define:vars={{skillColor, fontWeight, textCase}}>
-      h1 {
-        color: purple;
-        font-size: 4rem;
-      }
-      .skillContainer {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-      .skill {
-        color: green;
-        color: var(--skillColor);
-        font-weight: var(--fontWeight);
-        text-transform: var(--textCase);
-      }
-      img {
-        display: block;
-        width: 300px;
-        height: auto;
-        border-radius: 5%;
-        margin: 0 auto;
-      }
-    </style>
-	</head>
-	<body>
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
-		<h1>{pageTitle}</h1>
+<BaseLayout pageTitle={pageTitle}>
         <h2>Hi, my name is Carlos :)</h2>
 
         <img src={selfie.src} alt="My hild and i">
@@ -86,5 +49,30 @@ const textCase = "uppercase";
         {finished && <p>I finished this tutorial!</p>}
 
         {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
-	</body>
-</html>
+</BaseLayout>
+
+<style is:global define:vars={{skillColor, fontWeight, textCase}}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+      .skillContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .skill {
+        color: green;
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+      img {
+        display: block;
+        width: 300px;
+        height: auto;
+        border-radius: 5%;
+        margin: 0 auto;
+      }
+    </style>
